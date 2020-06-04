@@ -1,0 +1,2 @@
+# Adeept_Ultimate_Starter_Kit_for_RPi
+Adeept_Ultimate_Starter_Kit_for_RPi (C and Python)
