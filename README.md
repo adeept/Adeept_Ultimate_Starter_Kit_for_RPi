@@ -13,6 +13,4 @@ Tutorial download address:https://www.adeept.com/learn/detail-47.html
 
 ​	If you have any problems for learning, please contact us at [support@adeept.com](support@adeept.com). We will do our best to help you solve the problem.
 
-# Adeept_Ultimate_Starter_Kit_for_RPi
-Adeept_Ultimate_Starter_Kit_for_RPi (C and Python)
->>>>>>> a6ede79c18d37dad44e4fa19c55fcd9086a53d86
+
