@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+    <title>Snake</title>
+    <script type="text/javascript" src="{{ url_for('static', filename='socketio.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+    
+<style>
+#myCanvas {
+    box-shadow: 0 0 6px #000;
+}
+</style>
+</head>
+
+<body>
+<br/><br/><br/>
+<input type="button" value="start" onclick="beginGame();"><br/><br/><br/>
+<canvas id="myCanvas" width="450" height="450"></canvas>
+
+</body>
+
+<script type="text/javascript" src="{{ url_for('static', filename='snake.js') }}" ></script>
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+        namespace = "/controller"
+        var socket = io.connect('http://' + document.domain + ':' + location.port + namespace);
+
+        socket.on('connect', function (data) {
+            socket.emit('message', { 'data': 'connected!' });
+        });
+
+        socket.on('disconnect', function (data) {
+            socket.emit('message', { 'data': 'disconnected!' });
+        });
+
+        socket.on('response', function (data) {
+            console.log(data.keyCode)
+            moveSnake(data.keyCode)
+        });
+    });
+</script>
+</html>
