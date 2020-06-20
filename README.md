@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # 2020 New Ultimate Starter Kit for RPi
 
 ### About this kit
