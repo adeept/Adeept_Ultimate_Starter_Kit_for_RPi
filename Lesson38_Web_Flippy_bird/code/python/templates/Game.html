@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Game</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">	
+</head>
+<body>
+	<div class="ctn">
+  		<canvas id="c" width="360px" height="640px"></canvas>
+ 		<div id="scoreboard">0</div>
+  		<div id="start-screen">
+    		<div id="ctrl-ctn">
+      		<div id="up" class="ctrl-btn">
+						
+					</div>
+      		<div id="space" class="ctrl-btn">Press Button</div>
+    	</div>
+    </div>
+	<div id="gameover-screen">
+    	<div id="gameover">GAME OVER</div>
+    	<div id="replay">REPLAY</div>
+	</div>
+</div>
+<script type="text/javascript" src="{{ url_for('static', filename='js/javascript.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/socketio.js') }}"></script>
+
+<script type="text/javascript" charset="utf-8">
+	$(document).ready(function () {
+			namespace = "/controller"
+			var socket = io.connect('http://' + document.domain + ':' + location.port + namespace);
+
+			socket.emit("message", { "data": "" })
+
+			socket.on('connect', function (data) {
+					socket.emit('message', { 'data': 'I\'m connected!' });
+			});
+
+			socket.on('disconnect', function (data) {
+					socket.emit('message', { 'data': 'I\'m disconnected!' });
+			});
+
+			let counter = 0
+
+			socket.on('response', function (data) {
+				if(data.controller == 'press') {
+					playerInput();
+					console.log(1)
+				}
+			});
+	});
+</script>
+</body>
+</html>

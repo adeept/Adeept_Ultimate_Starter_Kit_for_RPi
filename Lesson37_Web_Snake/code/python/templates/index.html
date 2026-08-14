@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <title>Snake</title>
+    <script type="text/javascript" src="{{ url_for('static', filename='socketio.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+    <style>
+        #myCanvas {
+            box-shadow: 0 0 6px #000;
+        }
+        body {
+            text-align: center;
+        }
+        button {
+            font-size: 20px;
+            padding: 8px 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Joystick Snake</h2>
+    <input type="button" value="Start" onclick="beginGame();">
+    <p id="status">Joystick connecting...</p>
+    <canvas id="myCanvas" width="450" height="450"></canvas>
+    <script type="text/javascript" src="{{ url_for('static', filename='snake.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var namespace = "/controller";
+            var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
+            socket.on('connect', function() {
+                console.log("Socket.IO connected");
+                $("#status").text("Joystick Connected");
+                socket.emit('message', {data: 'connected!'});
+            });
+            socket.on('disconnect', function() {
+                console.log("Socket.IO disconnected");
+                $("#status").text("Joystick Disconnected");
+            });
+            socket.on('connect_error', function(error) {
+                console.log("Socket.IO connect error:", error);
+                $("#status").text("Socket.IO Connect Error");
+            });
+            socket.on('response', function(data) {
+                console.log("Joystick keyCode:", data.keyCode);
+                if (data.keyCode >= 37 && data.keyCode <= 40) {
+                    moveSnake(data.keyCode);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
