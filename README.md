@@ -1,9 +1,11 @@
 
-# 2020 New Ultimate Starter Kit for RPi
+# 2026 New Ultimate Starter Kit for RPi
 
 ### About this kit
 
 ​	This is a learning kit for Raspberry Pi starter. Some common electronic components and sensors are included. Through the learning, you will get a better understanding of electronics and Raspberry Pi, and be able to make many fascinating works based on Raspberry Pi.
+
+Compatible with raspberry Pi 3, 4 and 5
 
 Tutorial download address:https://www.adeept.com/learn/detail-47.html
 
